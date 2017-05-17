@@ -13,9 +13,9 @@ setup(
     install_requires=[
         'flask==0.12',
         'pywinauto==0.6.2',
-        'pywin32==221'
+        'pywin32==221',
         'comtypes==1.1.3',
-        'pillow=4.1.1',
+        'pillow==4.1.1',
         'imagehash==3.4'
     ]
 )

@@ -1,7 +1,7 @@
 from flask import Flask, send_file
-from bot.bot_process import BotProcess
-from io import BytesIO
-from optparse import OptionParser
+from bot.window_manager import WindowManager
+from bot.state_machine import StateMachine
+import logging
 
 app = Flask(__name__)
 
@@ -20,12 +20,10 @@ def hello():
 
 
 if __name__ == "__main__":
-    parser = OptionParser()
-    parser.add_option("-u", "--username", dest="username")
-    parser.add_option("-p", "--password", dest="password")
+    logging.basicConfig(level=logging.INFO)
 
-    (options, args) = parser.parse_args()
+    state_machine = StateMachine()
 
-    bot = BotProcess(options.username, options.password)
-    bot.start()
+    window_manager = WindowManager(state_machine)
+    window_manager.run()
     app.run()
